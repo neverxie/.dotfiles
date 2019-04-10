@@ -1,1 +1,6 @@
-# mt_rc
+# dotfiles
+dotfiles unified management
+
+## support
+- vim
+- tmux
