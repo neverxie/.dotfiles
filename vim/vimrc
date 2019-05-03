@@ -1,0 +1,91 @@
+"=========================================================================
+" File		 : .vimrc
+" Change Logs:
+" Date			Author		Notes
+" 2019.4.10		never		the first version
+"=========================================================================
+
+"-------------------------------------------------------------------------
+"
+"-------------------------------------------------------------------------
+set number
+set nowritebackup
+set nobackup
+set incsearch
+set hlsearch
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set cindent
+
+set guioptions-=T
+set pumheight=4
+set completeopt-=preview
+set tags=tags;/
+filetype indent on
+
+"-------------------------------------------------------------------------
+" 文件编码
+"-------------------------------------------------------------------------
+set fileencodings=UTF-8,cp936
+let loaded_matchparen = 1
+au BufNewFile,BufRead *.c,*.cpp,*.h,*.S,*.s set expandtab
+
+"-------------------------------------------------------------------------
+" 主题
+"-------------------------------------------------------------------------
+colorscheme peachpuff
+
+"-------------------------------------------------------------------------
+" 高亮
+"-------------------------------------------------------------------------
+highlight Search ctermfg=0
+
+"-------------------------------------------------------------------------
+" 大于80列字符设置高亮
+"-------------------------------------------------------------------------
+highlight ColorColumn ctermfg=cyan ctermbg=None
+call matchadd('ColorColumn', '\%81v', 100)
+highlight linenr ctermfg=darkmagenta
+
+"-------------------------------------------------------------------------
+" 分割线样式
+"-------------------------------------------------------------------------
+highlight VertSplit ctermfg=gray ctermbg=none term=none cterm=none gui=none
+hi StatusLineNC ctermfg=gray ctermbg=none term=none cterm=none gui=none
+hi StatusLine ctermfg=brown ctermbg=none term=none cterm=none gui=none
+
+"-------------------------------------------------------------------------
+" 状态行样式
+"-------------------------------------------------------------------------
+set statusline=
+set statusline+=\ %<%f
+set statusline+=\ \|\ ascii:%b
+set statusline+=\ \|\ hex:0x%02.2B
+set statusline+=\ %=\ %{''.(&ff).''}
+set statusline+=\ \|\ %{&enc}
+set statusline+=\ \|\ %Y
+set statusline+=\ \|\ %=%l/%L\ %c
+set statusline+=\ \|\ %M%R%W\ %P
+set laststatus=2
+
+"-------------------------------------------------------------------------
+" vim插件
+"-------------------------------------------------------------------------
+call plug#begin('~/.vim/plugged')
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+call plug#end()
+
+" vim-markdown关闭折叠
+let g:vim_markdown_folding_disabled = 1
+let g:instant_markdown_autostart = 0
+nmap <silent> <F9> <Plug>MarkdownPreview
+imap <silent> <F9> <Plug>MarkdownPreview
+nmap <silent> <F10> <Plug>StopMarkdownPreview
+imap <silent> <F10> <Plug>StopMarkdownPreview
+nmap <F8> :noh<CR>

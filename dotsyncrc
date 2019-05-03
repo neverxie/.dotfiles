@@ -59,7 +59,7 @@ tmux/tmux.conf
 tmux/tmux-powerlinerc
 #tmux/tmuxinator
 #vim/dotvim:.vim
-#vim/vimrc
+vim/vimrc
 #vim/gvimrc
 #wget/wgetrc
 #zsh/fasdrc
