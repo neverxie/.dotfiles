@@ -6,14 +6,28 @@
 "=========================================================================
 
 "-------------------------------------------------------------------------
-"
+" This line should not be removed as it ensures that various options are
+" properly set to work with the Vim-related packages available in Debian.
 "-------------------------------------------------------------------------
+runtime! debian.vim
+
+"-------------------------------------------------------------------------
+" Vim5 and later versions support syntax highlighting. Uncommenting the next
+" line enables syntax highlighting by default.
+"-------------------------------------------------------------------------
+if has("syntax")
+	syntax on
+endif
+
 set number
 set nowritebackup
 set nobackup
 set incsearch
 set hlsearch
 
+"-------------------------------------------------------------------------
+" 缩进
+"-------------------------------------------------------------------------
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -24,6 +38,8 @@ set pumheight=4
 set completeopt-=preview
 set tags=tags;/
 filetype indent on
+
+nmap <F8> :noh<CR>
 
 "-------------------------------------------------------------------------
 " 文件编码
@@ -47,14 +63,22 @@ highlight Search ctermfg=0
 "-------------------------------------------------------------------------
 highlight ColorColumn ctermfg=cyan ctermbg=None
 call matchadd('ColorColumn', '\%81v', 100)
+
+"-------------------------------------------------------------------------
+" 行号颜色
+"-------------------------------------------------------------------------
 highlight linenr ctermfg=darkmagenta
+"highlight linenr ctermfg=darkgray
+"highlight linenr ctermfg=gray
+"highlight linenr ctermfg=lightgray
+"highlight linenr ctermfg=brown
 
 "-------------------------------------------------------------------------
 " 分割线样式
 "-------------------------------------------------------------------------
 highlight VertSplit ctermfg=gray ctermbg=none term=none cterm=none gui=none
+hi StatusLine ctermfg=darkcyan ctermbg=none term=none cterm=none gui=none
 hi StatusLineNC ctermfg=gray ctermbg=none term=none cterm=none gui=none
-hi StatusLine ctermfg=brown ctermbg=none term=none cterm=none gui=none
 
 "-------------------------------------------------------------------------
 " 状态行样式
@@ -88,4 +112,3 @@ nmap <silent> <F9> <Plug>MarkdownPreview
 imap <silent> <F9> <Plug>MarkdownPreview
 nmap <silent> <F10> <Plug>StopMarkdownPreview
 imap <silent> <F10> <Plug>StopMarkdownPreview
-nmap <F8> :noh<CR>
