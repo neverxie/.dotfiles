@@ -4,3 +4,5 @@ dotfiles unified management
 ## support
 - vim
 - tmux
+- git
+- bash
