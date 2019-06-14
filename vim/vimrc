@@ -61,13 +61,13 @@ highlight Search ctermfg=0
 "-------------------------------------------------------------------------
 " 大于80列字符设置高亮
 "-------------------------------------------------------------------------
-highlight ColorColumn ctermfg=cyan ctermbg=None
+highlight ColorColumn ctermfg=cyan guifg=cyan ctermbg=None guibg=bg
 call matchadd('ColorColumn', '\%81v', 100)
 
 "-------------------------------------------------------------------------
 " 行号颜色
 "-------------------------------------------------------------------------
-highlight linenr ctermfg=darkmagenta
+highlight linenr ctermfg=darkmagenta guifg=fg
 "highlight linenr ctermfg=darkgray
 "highlight linenr ctermfg=gray
 "highlight linenr ctermfg=lightgray
@@ -76,14 +76,16 @@ highlight linenr ctermfg=darkmagenta
 "-------------------------------------------------------------------------
 " 分割线样式
 "-------------------------------------------------------------------------
-highlight VertSplit ctermfg=gray ctermbg=none term=none cterm=none gui=none
-"hi StatusLine ctermfg=darkcyan ctermbg=none term=none cterm=none gui=none
-hi StatusLine ctermfg=red ctermbg=none term=none cterm=none gui=none
-hi StatusLineNC ctermfg=gray ctermbg=none term=none cterm=none gui=none
+"highlight VertSplit ctermfg=gray ctermbg=none term=none cterm=none gui=none
+" guibg无法设置none
+highlight VertSplit ctermfg=gray guifg=gray guibg=bg ctermbg=none gui=none
 
 "-------------------------------------------------------------------------
-" 状态行样式
+" 状态行
 "-------------------------------------------------------------------------
+"hi StatusLine ctermfg=darkcyan ctermbg=none term=none cterm=none gui=none
+hi StatusLine ctermfg=red guifg=red guibg=bg ctermbg=none term=none cterm=none gui=none
+hi StatusLineNC ctermfg=gray guifg=gray guibg=bg ctermbg=none term=none cterm=none gui=none
 set statusline=
 set statusline+=\ %<%f
 set statusline+=\ \|\ ascii:%b
@@ -94,6 +96,13 @@ set statusline+=\ \|\ %Y
 set statusline+=\ \|\ %=%l/%L\ %c
 set statusline+=\ \|\ %M%R%W\ %P
 set laststatus=2
+
+"-------------------------------------------------------------------------
+" 字体
+"-------------------------------------------------------------------------
+if has('gui_running')
+	set guifont=FiraCode\ 7
+endif
 
 "-------------------------------------------------------------------------
 " vim插件
