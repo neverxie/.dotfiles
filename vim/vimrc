@@ -19,15 +19,15 @@ if has("syntax")
 	syntax on
 endif
 
+"-------------------------------------------------------------------------
+" generation
+"-------------------------------------------------------------------------
 set number
 set nowritebackup
 set nobackup
 set incsearch
 set hlsearch
 
-"-------------------------------------------------------------------------
-" 缩进
-"-------------------------------------------------------------------------
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -54,12 +54,12 @@ au BufNewFile,BufRead *.c,*.cpp,*.h,*.S,*.s set expandtab
 colorscheme peachpuff
 
 "-------------------------------------------------------------------------
-" 高亮
+" 搜索高亮
 "-------------------------------------------------------------------------
-highlight Search ctermfg=0
+highlight Search ctermfg=black
 
 "-------------------------------------------------------------------------
-" 大于80列字符设置高亮
+" 第81列非空字符设置高亮
 "-------------------------------------------------------------------------
 highlight ColorColumn ctermfg=cyan guifg=cyan ctermbg=None guibg=bg
 call matchadd('ColorColumn', '\%81v', 100)
@@ -83,7 +83,6 @@ highlight VertSplit ctermfg=gray guifg=gray guibg=bg ctermbg=none gui=none
 "-------------------------------------------------------------------------
 " 状态行
 "-------------------------------------------------------------------------
-"hi StatusLine ctermfg=darkcyan ctermbg=none term=none cterm=none gui=none
 hi StatusLine ctermfg=red guifg=red guibg=bg ctermbg=none term=none cterm=none gui=none
 hi StatusLineNC ctermfg=gray guifg=gray guibg=bg ctermbg=none term=none cterm=none gui=none
 set statusline=
@@ -121,6 +120,10 @@ call plug#end()
 " vim-markdown关闭折叠
 let g:vim_markdown_folding_disabled = 1
 let g:instant_markdown_autostart = 0
+
+"-------------------------------------------------------------------------
+" 按键映射
+"-------------------------------------------------------------------------
 nmap <silent> <F9> <Plug>MarkdownPreview
 imap <silent> <F9> <Plug>MarkdownPreview
 nmap <silent> <F10> <Plug>StopMarkdownPreview
