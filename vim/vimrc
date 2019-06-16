@@ -33,7 +33,7 @@ set softtabstop=4
 set shiftwidth=4
 set cindent
 
-set guioptions-=T
+set guioptions-=T "隐藏工具栏
 set pumheight=4
 set completeopt-=preview
 set tags=tags;/
@@ -65,6 +65,42 @@ highlight ColorColumn ctermfg=cyan guifg=cyan ctermbg=None guibg=bg
 call matchadd('ColorColumn', '\%81v', 100)
 
 "-------------------------------------------------------------------------
+" 行尾空字符高亮
+"-------------------------------------------------------------------------
+" 禁止加载该插件，这里是没有作用的
+if exists('loaded_trailing_whitespace_plugin') | finish | endif
+let loaded_trailing_whitespace_plugin = 1
+
+if !exists('g:extra_whitespace_ignored_filetypes')
+	    let g:extra_whitespace_ignored_filetypes = []
+endif
+
+function! ShouldMatchWhitespace()
+	for ft in g:extra_whitespace_ignored_filetypes
+		if ft ==# &filetype | return 0 | endif
+	endfor
+	return 1
+endfunction
+
+highlight default ExtraWhitespace ctermbg=darkred guibg=darkred
+
+autocmd ColorScheme * highlight default ExtraWhitespace ctermbg=darkred guibg=darkred
+autocmd BufRead,BufNew * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | else | match ExtraWhitespace /^^/ | endif
+
+" The above flashes annoyingly while typing, be calmer in insert mode
+autocmd InsertLeave * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+$/ | endif
+autocmd InsertEnter * if ShouldMatchWhitespace() | match ExtraWhitespace /\\\@<![\u3000[:space:]]\+\%#\@<!$/ | endif
+
+function! s:FixWhitespace(line1,line2)
+    let l:save_cursor = getpos(".")
+    silent! execute ':' . a:line1 . ',' . a:line2 . 's/\\\@<!\s\+$//'
+    call setpos('.', l:save_cursor)
+endfunction
+
+" Run :FixWhitespace to remove end of line white space
+command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
+
+"-------------------------------------------------------------------------
 " 行号颜色
 "-------------------------------------------------------------------------
 highlight linenr ctermfg=darkmagenta guifg=fg
@@ -76,26 +112,60 @@ highlight linenr ctermfg=darkmagenta guifg=fg
 "-------------------------------------------------------------------------
 " 分割线样式
 "-------------------------------------------------------------------------
-"highlight VertSplit ctermfg=gray ctermbg=none term=none cterm=none gui=none
+highlight VertSplit ctermfg=gray ctermbg=none cterm=none
 " guibg无法设置none
-highlight VertSplit ctermfg=gray guifg=gray guibg=bg ctermbg=none gui=none
+if has('gui_running')
+	highlight VertSplit guibg=bg guifg=fg
+endif
 
 "-------------------------------------------------------------------------
 " 状态行
 "-------------------------------------------------------------------------
+function! GitCheck()
+	return system("git rev-parse --git-dir 2> /dev/null")
+endfunction
+
+function! GitBranch()
+  "return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! GitModify()
+	return system("git ls-files --modified `git rev-parse --show-cdup` | wc -l | tr -d '\n'")
+endfunction
+
+function! GitNotAdd()
+	return system("git ls-files --others --exclude-standard `git rev-parse --show-cdup` | wc -l | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:br = GitBranch()
+  "return strlen(l:br) > 0?'  '.l:br.' ':''
+  return strlen(l:br) > 0?'  '.l:br.'':''
+endfunction
+
 hi StatusLine ctermfg=red guifg=red guibg=bg ctermbg=none term=none cterm=none gui=none
 hi StatusLineNC ctermfg=gray guifg=gray guibg=bg ctermbg=none term=none cterm=none gui=none
 set statusline=
 set statusline+=\ %<%f
 set statusline+=\ \|\ ascii:%b
 set statusline+=\ \|\ hex:0x%02.2B
+"set statusline+=\ \|\ hex:0x%02.2B\ \|\ 
+"set statusline+=\ %1*\|%*\ %2*\ %*
+"set statusline+=%2*%{StatuslineGit()}%*
+set statusline+=%{StatuslineGit()}
 set statusline+=\ %=\ %{''.(&ff).''}
-set statusline+=\ \|\ %{&enc}
+"set statusline+=\ \|\ %{&fenc}
+set statusline+=\ \|\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
 set statusline+=\ \|\ %Y
 set statusline+=\ \|\ %=%l/%L\ %c
-set statusline+=\ \|\ %M%R%W\ %P
+set statusline+=\ \|\ %M%R%W\ %P\ 
 set laststatus=2
 
+"set statusline+=\ \|\ %1*%*
+"set statusline+=\ \|\ %1*%*%{StatuslineGit()}
+highlight User1 ctermfg=lightgrey
+highlight User2 ctermfg=lightgrey
 "-------------------------------------------------------------------------
 " 字体
 "-------------------------------------------------------------------------
@@ -108,7 +178,7 @@ endif
 "-------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 " 行尾空白字符高亮
-Plug 'bronson/vim-trailing-whitespace'
+"Plug 'bronson/vim-trailing-whitespace'
 " 不知道是什么插件
 "Plug 'godlygeek/tabular'
 " md语法
