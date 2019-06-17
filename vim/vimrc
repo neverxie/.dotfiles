@@ -22,6 +22,7 @@ endif
 "-------------------------------------------------------------------------
 " generation
 "-------------------------------------------------------------------------
+set autoread
 set number
 set nowritebackup
 set nobackup
@@ -172,6 +173,65 @@ highlight User2 ctermfg=lightgrey
 if has('gui_running')
 	set guifont=FiraCode\ 7
 endif
+
+"-------------------------------------------------------------------------
+" 新文件标题
+"-------------------------------------------------------------------------
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufRead,BufNewFile	*.sh set filetype=sh
+autocmd BufRead,BufNewFile	*.c set filetype=c
+autocmd BufRead,BufNewFile	*.h set filetype=cpp
+autocmd BufRead,BufNewFile	*.mk,Makefile,Makefile.build set filetype=make
+autocmd BufNewFile *.h,*.c,*.cpp,*.sh,*.mk,Makefile,Makefile.build,vimrc exec ":call SetTitle()"
+func SetTitle()
+	"c、h文件共用"
+	if &filetype == 'c'
+        call setline(1, "/*")
+        call append(line("."),	 " * File		  : ".expand("%"))
+        call append(line(".")+1, " *")
+        call append(line(".")+2, " * Change Logs:")
+        call append(line(".")+3, " * Date			Author		Notes")
+        call append(line(".")+4, " * ".strftime("%F")."	never		the first version")
+        call append(line(".")+5, " */")
+	else
+		"脚本"
+        call setline(1," \"=========================================================================")
+        call append(line("."), " \" File		  : ".expand("%"))
+        call append(line(".")+1, " \"")
+        call append(line(".")+2, " \" Change Logs:")
+        call append(line(".")+3, " \" Date			Author		Notes")
+        call append(line(".")+4, " \" ".strftime("%F")."	never		the first version")
+        call append(line(".")+5, " \"=========================================================================")
+    endif
+	if &filetype == 'sh'
+        call append(line(".")+6, "")
+        call append(line(".")+7, " #!/bin/bash")
+        call append(line(".")+8, "")
+	endif
+	"h 文件"
+    if &filetype == 'cpp'
+        call append(line(".")+6,  "")
+		call append(line(".")+7,  "#ifndef __".toupper(expand("%:t:r"))."_H")
+		call append(line(".")+8,  "#define __".toupper(expand("%:t:r"))."_H")
+        call append(line(".")+9,  "")
+		call append(line(".")+10, "#ifdef __cplusplus")
+		call append(line(".")+11, "extern \"C\" {")
+		call append(line(".")+12, "")
+		call append(line(".")+13, "#endif")
+		call append(line(".")+14, "#ifdef __cplusplus")
+		call append(line(".")+15, "}")
+		call append(line(".")+16, "#endif")
+		call append(line(".")+17, "#endif /*__".toupper(expand("%:t:r"))."_H*/")
+    endif
+	"c 文件 include"
+    if &filetype == 'c'
+		call append(line(".")+6, "")
+		call append(line(".")+7,"#include \"".expand("%:t:r").".h\"")
+        call append(line(".")+8, "")
+    endif
+    "新建文件后，自动定位到文件末尾
+    autocmd BufNewFile * normal G
+endfunc
 
 "-------------------------------------------------------------------------
 " vim插件
