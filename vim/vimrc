@@ -188,7 +188,8 @@ func SetTitle()
 	"c、h文件共用"
 	if &filetype == 'c' " 空格
 		call setline(1,			 "/*")
-        call append(line("."),	 " * File       : ".expand("%"))
+        call append(line("."),	 " * Copyright (c) 2019, never.xie <neverxie@outlook.com>")
+        "call append(line("."),	 " * File       : ".expand("%"))
         call append(line(".")+1, " *")
         call append(line(".")+2, " * Change Logs:")
         call append(line(".")+3, " * Date         Author    Notes")
