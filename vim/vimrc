@@ -22,6 +22,8 @@ endif
 "-------------------------------------------------------------------------
 " generation
 "-------------------------------------------------------------------------
+"set listchars=tab:>-,trail:.
+"set list
 set number
 set nowritebackup
 set nobackup
@@ -126,8 +128,8 @@ function! GitCheck()
 endfunction
 
 function! GitBranch()
-  "return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+	"return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+	return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 endfunction
 
 function! GitModify()
@@ -139,13 +141,14 @@ function! GitNotAdd()
 endfunction
 
 function! StatuslineGit()
-  let l:br = GitBranch()
-  "return strlen(l:br) > 0?'  '.l:br.' ':''
-  return strlen(l:br) > 0?'  '.l:br.'':''
+	let l:br = GitBranch()
+	"return strlen(l:br) > 0?'  '.l:br.' ':''
+	return strlen(l:br) > 0?'  '.l:br.'':''
 endfunction
 
 hi StatusLine ctermfg=red guifg=red guibg=bg ctermbg=none term=none cterm=none gui=none
 hi StatusLineNC ctermfg=gray guifg=gray guibg=bg ctermbg=none term=none cterm=none gui=none
+
 set statusline=
 set statusline+=\ %<%f
 set statusline+=\ \|\ ascii:%b
@@ -153,7 +156,7 @@ set statusline+=\ \|\ hex:0x%02.2B
 "set statusline+=\ \|\ hex:0x%02.2B\ \|\ 
 "set statusline+=\ %1*\|%*\ %2*\ %*
 "set statusline+=%2*%{StatuslineGit()}%*
-set statusline+=%{StatuslineGit()}
+"set statusline+=%{StatuslineGit()}
 set statusline+=\ %=\ %{''.(&ff).''}
 "set statusline+=\ \|\ %{&fenc}
 set statusline+=\ \|\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
@@ -188,8 +191,9 @@ func SetTitle()
 	"c、h文件共用"
 	if &filetype == 'c' " 空格
 		call setline(1,			 "/*")
-        call append(line("."),	 " * Copyright (c) 2019, never.xie <neverxie@outlook.com>")
-        "call append(line("."),	 " * File       : ".expand("%"))
+        "call append(line("."),	 " * Copyright (c) 2019, never.xie <neverxie@outlook.com>")
+        "call append(line("."),	 " * ")
+        call append(line("."),	 " * File       : ".expand("%"))
         call append(line(".")+1, " *")
         call append(line(".")+2, " * Change Logs:")
         call append(line(".")+3, " * Date         Author    Notes")
