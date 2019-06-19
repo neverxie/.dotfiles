@@ -17,6 +17,7 @@ DOTFILES=.dotfiles
 #
 [files]
 dotsyncrc
+bash/bashrc
 #ack/ackrc
 #aptitude
 #bin:bin
