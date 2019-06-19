@@ -58,6 +58,7 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='\[\033[01;35m\]\w\[\033[00m\]\n\[\033[01;37m\]\$\[\033[00m\] '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -119,3 +120,98 @@ fi
 # rtt gcc
 export RTT_EXEC_PATH=[/usr/bin/arm-none-eabi-gcc]
 export PATH=~/.dotfiles:$PATH
+
+#git
+function git-check {
+	[[ -z $(git rev-parse --git-dir 2> /dev/null) ]] && return
+}
+
+function git-branch-name {
+  git symbolic-ref --short -q HEAD 2>/dev/null
+}
+
+function git-branch-prompt {
+  local branch=`git-branch-name`
+  #if [ $branch ]; then printf " [%s]" $branch; fi
+  if [ $branch ]; then
+	  printf "  %s " $branch;
+  fi
+}
+
+function git-stage {
+	git diff --staged --name-status | wc -l
+}
+
+function git-stage-prompt {
+	[[ -z $(git rev-parse --git-dir 2> /dev/null) ]] && return
+
+	local stage=`git-stage`
+	if [ $stage -gt 0 ]; then
+		#printf " ⊕ %d " $stage;
+		printf "⊕  ";
+	fi
+}
+
+function git-modify {
+	git ls-files --modified `git rev-parse --show-cdup` | wc -l
+}
+
+function git-modify-prompt {
+	[[ -z $(git rev-parse --git-dir 2> /dev/null) ]] && return
+	local modify=`git-modify`
+	if [ $modify -gt 0 ]; then
+		#printf " +%d" $modify;
+		printf "+ ";
+	fi
+}
+
+function git-others {
+	git ls-files --others --exclude-standard `git rev-parse --show-cdup` | wc -l
+}
+
+function git-others-prompt {
+	[[ -z $(git rev-parse --git-dir 2> /dev/null) ]] && return
+	local others=`git-others`
+	if [ $others -gt 0 ]; then
+		#printf " ⋯ %d" $others;
+		printf "⋯ ";
+	fi
+}
+
+function git-compare {
+	git rev-list --left-right --count $tracking_branch...HEAD
+}
+
+function git-compare-prompt {
+	[[ -z $(git rev-parse --git-dir 2> /dev/null) ]] && return
+
+	symbolic_ref=$(git symbolic-ref -q HEAD)
+	[[ -z "${symbolic_ref}" ]] && return
+
+	tracking_branch=$(git for-each-ref --format='%(upstream:short)' ${symbolic_ref})
+
+	set -- $(git rev-list --left-right --count $tracking_branch...HEAD)
+
+	behind=$1
+	ahead=$2
+
+	if [[ $behind -gt 0 ]]; then
+		printf "↓ ";
+	fi
+	if [[ $ahead -gt 0 ]]; then
+		printf "↑ ";
+	fi
+}
+
+#\[\033[00;36m\]\$(git-branch-prompt)\[\033[00m\]
+
+#PS1=$'\[\033[00;35m\]\u256D\[\033[00m\]'$'\[\033[00;35m\]\U2500\[\033[00m\]'$'\[\033[00;35m\]\U2500\[\033[00m\]''\[\033[01;35m\] \w\[\033[00m\]'
+PS1=$'\[\033[01;30m\]\u256D\[\033[00m\]'$'\[\033[01;30m\]\U2500\[\033[00m\]''\[\033[01;34m\] \w\[\033[00m\]'
+PS1+="\[\033[00;36m\]\$(git-branch-prompt)\[\033[00m\]"
+#PS1+="\[\033[01;32m\]\$(git-modify-prompt)\[\033[00m\]" # 修改的
+#PS1+="\[\033[01;33m\]\$(git-stage-prompt)\[\033[00m\]"  # add的
+#PS1+="\[\033[01;34m\]\$(git-others-prompt)\[\033[00m\]" # 增加了新文件，但是没有add
+#PS1+="\[\033[01;31m\]\$(git-compare-prompt)\[\033[00m\]" # 已提交，但没有push
+PS1+='\n'
+#PS1+=$'\[\033[00;35m\]\u2570\[\033[00m\]''\[\033[01;35m\]>\[\033[00m\]\[\033[01;36m\]\$\[\033[00m\] '
+PS1+=$'\[\033[01;30m\]\u2570\[\033[00m\]''\[\033[01;34m\]>\[\033[00m\] '
