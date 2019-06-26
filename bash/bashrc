@@ -58,7 +58,6 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    #PS1='\[\033[01;35m\]\w\[\033[00m\]\n\[\033[01;37m\]\$\[\033[00m\] '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -131,11 +130,12 @@ function git-branch-name {
 }
 
 function git-branch-prompt {
-  local branch=`git-branch-name`
-  #if [ $branch ]; then printf " [%s]" $branch; fi
-  if [ $branch ]; then
-	  printf "  %s" $branch;
-  fi
+	local branch=`git-branch-name`
+	#if [ $branch ]; then printf " [%s]" $branch; fi
+  	if [ $branch ]; then
+  	    #printf "  %s" $branch;
+  	    printf " %s" $branch;
+  	fi
 }
 
 function git-stage {
@@ -147,8 +147,8 @@ function git-stage-prompt {
 
 	local stage=`git-stage`
 	if [ $stage -gt 0 ]; then
-		#printf " ⊕ %d" $stage;
-		printf " ⊕ ";
+		printf " ⊕ %d" $stage;
+		#printf " ⊕ ";
 	fi
 }
 
@@ -160,8 +160,8 @@ function git-modify-prompt {
 	[[ -z $(git rev-parse --git-dir 2> /dev/null) ]] && return
 	local modify=`git-modify`
 	if [ $modify -gt 0 ]; then
-		#printf " +%d" $modify;
-		printf " +";
+		printf " +%d" $modify;
+		#printf " +";
 	fi
 }
 
@@ -173,8 +173,8 @@ function git-others-prompt {
 	[[ -z $(git rev-parse --git-dir 2> /dev/null) ]] && return
 	local others=`git-others`
 	if [ $others -gt 0 ]; then
-		#printf " ⋯ %d" $others;
-		printf " ⋯ ";
+		printf " ⋯ %d" $others;
+		#printf " ⋯ ";
 	fi
 }
 
@@ -196,21 +196,26 @@ function git-compare-prompt {
 	ahead=$2
 
 	if [[ $behind -gt 0 ]]; then
-		#printf " ↓%d" $behind;
-		printf " ↓";
+		printf " ↓%d" $behind;
+		#printf " ↓";
 	fi
 	if [[ $ahead -gt 0 ]]; then
-		#printf " ↑%d" $ahead;
-		printf " ↑";
+		printf " ↑%d" $ahead;
+		#printf " ↑";
 	fi
 }
 
 # 在以下 > 处填写需要的内容
 #\[\033[00;36m\]>\[\033[00m\]
+# \e[2m...\e[0m...
 
 #PS1=$'\[\033[00;35m\]\u256D\[\033[00m\]'$'\[\033[00;35m\]\U2500\[\033[00m\]'$'\[\033[00;35m\]\U2500\[\033[00m\]''\[\033[01;35m\] \w\[\033[00m\]'
-PS1=$'\[\033[01;30m\]\u256D\[\033[00m\]'$'\[\033[01;30m\]\U2500\[\033[00m\]''\[\033[01;34m\] \w\[\033[00m\]'
-PS1+="\[\033[01;35m\]\$(git-branch-prompt)\[\033[00m\]"
+#echo -ne "\[\e[s\e[A\e[$((COLUMNS-2))G\e[31m\e[00;30;41m${a:(-3)}\e[u\]\[\e[0m\e[0m\e[2m\]";
+PS1=$'\e[01;30m\u256D\e[0m'$'\e[01;30m\U2500\e[0m'
+PS1+=' '$'\e[01;34m\U1F4C2\e[0m' # 文件夹
+PS1+='`a=$?;if [ $a -ne 0 ]; then a="  "$a; echo -ne "\[\e[s\e[$((COLUMNS-14))G\e[31m\e[01;31m${a:(-3)}\e[u\]\[\e[0m\e[0m\e[2m\]"; fi`\[\033[01;34m\] \w\e[s\[\033[00m\] \e[$((COLUMNS-10))G\e[0m\e[2m\u@\h\e[0m\e[u'
+PS1+="\e[01;36m\$(git-branch-prompt)\e[0m"
+#\033[$((COLUMNS-10))G\033[0m\]\[\033[01;30m\]\u@\h\[\033[00m\]
 
 # 会卡...
 #PS1+="\[\033[00;32m\]\$(git-modify-prompt)\[\033[00m\]" # 修改的
