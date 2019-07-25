@@ -254,18 +254,18 @@ func SetTitle()
 	endif
 
     if &filetype == 'cpp'
+        call append(line(".")+6,  "")
+		call append(line(".")+7,  "#ifndef __".toupper(expand("%:t:r"))."_H")
+		call append(line(".")+8,  "#define __".toupper(expand("%:t:r"))."_H")
         call append(line(".")+9,  "")
-		call append(line(".")+10,  "#ifndef __".toupper(expand("%:t:r"))."_H")
-		call append(line(".")+11,  "#define __".toupper(expand("%:t:r"))."_H")
-        call append(line(".")+13,  "")
-		call append(line(".")+14, "#ifdef __cplusplus")
-		call append(line(".")+15, "extern \"C\" {")
-		call append(line(".")+16, "")
+		call append(line(".")+10, "#ifdef __cplusplus")
+		call append(line(".")+12, "extern \"C\" {")
+		call append(line(".")+13, "")
+		call append(line(".")+14, "#endif")
+		call append(line(".")+15, "#ifdef __cplusplus")
+		call append(line(".")+16, "}")
 		call append(line(".")+17, "#endif")
-		call append(line(".")+18, "#ifdef __cplusplus")
-		call append(line(".")+19, "}")
-		call append(line(".")+20, "#endif")
-		call append(line(".")+21, "#endif /*__".toupper(expand("%:t:r"))."_H*/")
+		call append(line(".")+18, "#endif /*__".toupper(expand("%:t:r"))."_H*/")
     endif
 
     if &filetype == 'c'
