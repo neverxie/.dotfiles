@@ -63,7 +63,7 @@ highlight Search ctermfg=black
 "-------------------------------------------------------------------------
 " 第81列非空字符设置高亮
 "-------------------------------------------------------------------------
-highlight ColorColumn ctermfg=cyan guifg=cyan ctermbg=None guibg=bg
+highlight ColorColumn ctermfg=cyan guifg=red ctermbg=None guibg=bg
 call matchadd('ColorColumn', '\%81v', 100)
 
 "-------------------------------------------------------------------------
@@ -106,10 +106,6 @@ command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
 " 行号颜色
 "-------------------------------------------------------------------------
 highlight linenr ctermfg=darkmagenta guifg=fg
-"highlight linenr ctermfg=darkgray
-"highlight linenr ctermfg=gray
-"highlight linenr ctermfg=lightgray
-"highlight linenr ctermfg=brown
 
 "-------------------------------------------------------------------------
 " 分割线样式
@@ -117,7 +113,7 @@ highlight linenr ctermfg=darkmagenta guifg=fg
 highlight VertSplit ctermfg=gray ctermbg=none cterm=none
 " guibg无法设置none
 if has('gui_running')
-	highlight VertSplit guibg=bg guifg=fg
+	highlight VertSplit guibg=fg guifg=bg
 endif
 
 "-------------------------------------------------------------------------
@@ -255,7 +251,7 @@ func SetTitle()
 
     if &filetype == 'cpp'
         call append(line(".")+6,  "")
-		call append(line(".")+7,  "#ifndef __".toupper(expand("%:t:r"))."_H")
+		call append(line(".")+7,  "#ifndef __".toupper(expand("%:t:r"))."_H") " 这里有bug......
 		call append(line(".")+8,  "#define __".toupper(expand("%:t:r"))."_H")
         call append(line(".")+9,  "")
 		call append(line(".")+10, "#ifdef __cplusplus")
@@ -305,7 +301,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'bronson/vim-trailing-whitespace'
 " 不知道是什么插件
 "Plug 'godlygeek/tabular'
-" md语法
+" md语法及预览
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
