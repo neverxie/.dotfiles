@@ -1,6 +1,3 @@
 [submodule "dotsync"]
 	path = dotsync
 	url = git@github.com:dotphiles/dotsync.git
-[submodule "tmux-powerline"]
-	path = tmux-powerline
-	url = git@github.com:neverxie/tmux-powerline.git

@@ -56,8 +56,8 @@ git/gitconfig
 #subversion
 #task/task
 #task/taskrc
-#tmux/tmux.conf
-#tmux/tmux-powerlinerc
+tmux/tmux.conf
+tmux/tmux-powerlinerc
 #tmux/tmuxinator
 #vim/dotvim:.vim
 vim/vimrc
