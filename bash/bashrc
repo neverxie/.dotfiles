@@ -128,7 +128,6 @@ function git-branch-name {
 function git-branch-prompt {
 	local branch=`git-branch-name`
   	if [ $branch ]; then
-  	    #printf "  %s" $branch;
   	    printf " %s" $branch;
   	fi
 }
@@ -151,7 +150,8 @@ function git-branch-prompt {
 ###PS1+=$'\[\033[01;30m\]\u2570\[\033[00m\]''\[\033[01;34m\]>\[\033[00m\] '
 
 # 暂时不要箭头符号了
-PS1='`a=$?;if [ $a -ne 0 ]; then a="  "$a; echo -ne "\[\e[s\e[$((COLUMNS-14))G\e[31m\e[01;31m${a:(-3)}\e[u\]\[\e[0m\e[0m\e[2m\]"; fi`\[\033[01;34m\]\w\e[s\[\033[00m\] \e[$((COLUMNS-10))G\e[0m\e[2m\u@\h\e[0m\e[u'
-PS1+="\e[01;36m\$(git-branch-prompt)\e[0m"
+PS1='`a=$?;if [ $a -ne 0 ]; then a="  "$a; echo -ne "\[\e[s\e[$((COLUMNS-14))G\e[31m\e[01;31m${a:(-3)}\e[u\]\[\e[0m\e[0m\e[2m\]"; fi`\[\033[38;5;12m\]\w\e[s\[\033[00m\] \e[$((COLUMNS-10))G\e[0m\e[2m\u@\h\e[0m\e[u'
+PS1+="\e[38;5;39m\$(git-branch-prompt)\e[0m"
 PS1+='\n'
-PS1+='\[\033[01;34m\]>\[\033[00m\] '
+#PS1+='\[\033[01;34m\]>\[\033[00m\] '
+PS1+='\[\033[38;5;12m\]❯\[\033[00m\] '
