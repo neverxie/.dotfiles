@@ -44,6 +44,13 @@ filetype indent on
 nmap <F8> :noh<CR>
 
 "-------------------------------------------------------------------------
+" 折叠样式
+"-------------------------------------------------------------------------
+set foldenable
+highlight Folded ctermbg=none ctermfg=magenta guibg=bg guifg=blue
+highlight FoldColumn ctermbg=none ctermfg=white guibg=bg guifg=white
+
+"-------------------------------------------------------------------------
 " 文件浏览
 "-------------------------------------------------------------------------
 let g:netrw_banner = 0 " 不显示横幅
@@ -331,8 +338,17 @@ Plug 'iamcco/markdown-preview.vim'
 call plug#end()
 
 " vim-markdown关闭折叠
-let g:vim_markdown_folding_disabled = 1
-let g:instant_markdown_autostart = 0
+"let g:vim_markdown_folding_disabled = 1
+"let g:instant_markdown_autostart = 0
+
+"zr: reduces fold level throughout the buffer
+"zR: opens all folds
+"zm: increases fold level throughout the buffer
+"zM: folds everything all the way
+"za: open a fold your cursor is on
+"zA: open a fold your cursor is on recursively
+"zc: close a fold your cursor is on
+"zC: close a fold your cursor is on recursively
 
 let g:vim_markdown_toc_autofit = 1
 
