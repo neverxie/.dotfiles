@@ -324,38 +324,38 @@ func! CompileRunGcc()
     endif
 endfunc
 
-"-------------------------------------------------------------------------
-" vim插件
-"-------------------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
-" 行尾空白字符高亮
-"Plug 'bronson/vim-trailing-whitespace'
-
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
-call plug#end()
-
-" vim-markdown关闭折叠
-"let g:vim_markdown_folding_disabled = 1
-"let g:instant_markdown_autostart = 0
-
-"zr: reduces fold level throughout the buffer
-"zR: opens all folds
-"zm: increases fold level throughout the buffer
-"zM: folds everything all the way
-"za: open a fold your cursor is on
-"zA: open a fold your cursor is on recursively
-"zc: close a fold your cursor is on
-"zC: close a fold your cursor is on recursively
-
-let g:vim_markdown_toc_autofit = 1
-
-"-------------------------------------------------------------------------
-" 按键映射
-"-------------------------------------------------------------------------
-nmap <silent> <F9> <Plug>MarkdownPreview
-imap <silent> <F9> <Plug>MarkdownPreview
-nmap <silent> <F10> <Plug>StopMarkdownPreview
-imap <silent> <F10> <Plug>StopMarkdownPreview
+""-------------------------------------------------------------------------
+"" vim插件
+""-------------------------------------------------------------------------
+"call plug#begin('~/.vim/plugged')
+"" 行尾空白字符高亮
+""Plug 'bronson/vim-trailing-whitespace'
+"
+"Plug 'godlygeek/tabular'
+"Plug 'plasticboy/vim-markdown'
+"Plug 'iamcco/mathjax-support-for-mkdp'
+"Plug 'iamcco/markdown-preview.vim'
+"call plug#end()
+"
+"" vim-markdown关闭折叠
+""let g:vim_markdown_folding_disabled = 1
+""let g:instant_markdown_autostart = 0
+"
+""zr: reduces fold level throughout the buffer
+""zR: opens all folds
+""zm: increases fold level throughout the buffer
+""zM: folds everything all the way
+""za: open a fold your cursor is on
+""zA: open a fold your cursor is on recursively
+""zc: close a fold your cursor is on
+""zC: close a fold your cursor is on recursively
+"
+"let g:vim_markdown_toc_autofit = 1
+"
+""-------------------------------------------------------------------------
+"" 按键映射
+""-------------------------------------------------------------------------
+"nmap <silent> <F9> <Plug>MarkdownPreview
+"imap <silent> <F9> <Plug>MarkdownPreview
+"nmap <silent> <F10> <Plug>StopMarkdownPreview
+"imap <silent> <F10> <Plug>StopMarkdownPreview
