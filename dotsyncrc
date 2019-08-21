@@ -17,7 +17,7 @@ DOTFILES=.dotfiles
 #
 [files]
 dotsyncrc
-bash/bashrc
+#bash/bashrc
 bash/bash_profile
 #ack/ackrc
 #aptitude
@@ -58,7 +58,7 @@ git/gitconfig
 #task/task
 #task/taskrc
 tmux/tmux.conf
-tmux/tmux-powerlinerc
+tmux/tmux.conf.local
 #tmux/tmuxinator
 #vim/dotvim:.vim
 vim/vimrc
@@ -75,7 +75,7 @@ vim/vimrc
 
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
 [hosts]
-MacBookPro								git=ANY
+HacBookPro								git=ANY
 #host1.example.com               git=ANY                        files=custom/dotfile    #git repo, pull from anywhere and link a custom dotfile
 #host2.example.com               git=ANY                                                #git repo, pull from anywhere
 #host3.example.com               git=ANY                                                #git repo, pull from anywhere
