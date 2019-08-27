@@ -9,7 +9,7 @@
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
 "-------------------------------------------------------------------------
-runtime! debian.vim
+"runtime! debian.vim
 
 "-------------------------------------------------------------------------
 " Vim5 and later versions support syntax highlighting. Uncommenting the next
@@ -24,6 +24,8 @@ endif
 "-------------------------------------------------------------------------
 "set listchars=tab:>-,trail:.
 "set list
+":set backspace=indent,eol,start"
+set backspace=2
 set number
 set nowritebackup
 set nobackup
@@ -143,6 +145,7 @@ command! -range=% FixWhitespace call <SID>FixWhitespace(<line1>,<line2>)
 " 行号颜色
 "-------------------------------------------------------------------------
 highlight linenr ctermfg=darkmagenta guifg=fg
+"highlight linenr ctermfg=darkgrey guifg=fg
 
 "-------------------------------------------------------------------------
 " 分割线样式
@@ -304,25 +307,25 @@ func SetTitle()
     autocmd BufNewFile * normal G
 endfunc
 
-"-------------------------------------------------------------------------
-" 编译运行
-"-------------------------------------------------------------------------
-map <F5> :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-    exec "w"
-    if &filetype == 'c'
-        exec "!g++ % -o %<"
-        exec "! ./%<"
-    elseif &filetype == 'cpp'
-        exec "!g++ % -o %<"
-        exec "! ./%<"
-    elseif &filetype == 'java'
-        exec "!javac %"
-        exec "!java %<"
-    elseif &filetype == 'sh'
-        :!./%
-    endif
-endfunc
+""-------------------------------------------------------------------------
+"" 编译运行
+""-------------------------------------------------------------------------
+"map <F5> :call CompileRunGcc()<CR>
+"func! CompileRunGcc()
+"    exec "w"
+"    if &filetype == 'c'
+"        exec "!g++ % -o %<"
+"        exec "! ./%<"
+"    elseif &filetype == 'cpp'
+"        exec "!g++ % -o %<"
+"        exec "! ./%<"
+"    elseif &filetype == 'java'
+"        exec "!javac %"
+"        exec "!java %<"
+"    elseif &filetype == 'sh'
+"        :!./%
+"    endif
+"endfunc
 
 ""-------------------------------------------------------------------------
 "" vim插件
