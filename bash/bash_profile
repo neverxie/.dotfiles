@@ -12,6 +12,7 @@ export LSCOLORS=exgxhxhxcxhxhxcxcxbxbx
 
 # some more ls aliases
 alias ll='ls -alF'
+alias lh='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -20,6 +21,7 @@ alias gi='git ci'
 alias go='git co'
 alias ga='git add'
 alias gc='git clone'
+alias gd='git diff'
 
 # rtt
 export RTT_EXEC_PATH=[/usr/bin/arm-none-eabi-gcc]
@@ -40,6 +42,6 @@ function git-branch-prompt {
 }
 #PS1='\[\033[38;5;24m\]\w\[\033[00m\] '
 PS1='\[\033[0;34m\]\w\[\033[00m\] '
-PS1+="\e[38;5;11m\$(git-branch-prompt)\e[0m"
+PS1+="\e[38;5;214m\$(git-branch-prompt)\e[0m"
 PS1+='\n'
 PS1+='\[\033[0;34m\]❯\[\033[00m\] '
