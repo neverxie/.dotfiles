@@ -22,6 +22,8 @@ alias go='git co'
 alias ga='git add'
 alias gc='git clone'
 alias gd='git diff'
+alias gps='git push'
+alias gpl='git pull'
 
 # rtt
 export RTT_EXEC_PATH=[/usr/bin/arm-none-eabi-gcc]
@@ -45,3 +47,13 @@ PS1='\[\033[0;34m\]\w\[\033[00m\] '
 PS1+="\e[38;5;214m\$(git-branch-prompt)\e[0m"
 PS1+='\n'
 PS1+='\[\033[0;34m\]❯\[\033[00m\] '
+
+# Setting PATH for Python 3.7
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
+export PATH
+
+# Setting PATH for Python 3.8
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
+export PATH
