@@ -26,3 +26,8 @@
 
 	# 按照补丁格式显示每个更新之间的差异
 	plg = log --pretty=fuller -p -1
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
