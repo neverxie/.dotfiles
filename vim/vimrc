@@ -339,6 +339,8 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'scrooloose/vim-slumlord'
+Plug 'aklt/plantuml-syntax'
 call plug#end()
 
 " vim-markdown关闭折叠
