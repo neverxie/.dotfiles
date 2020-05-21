@@ -26,7 +26,7 @@ alias gps='git push'
 alias gpl='git pull'
 
 # rtt
-export RTT_EXEC_PATH=[/usr/bin/arm-none-eabi-gcc]
+#export RTT_EXEC_PATH=[/usr/bin/arm-none-eabi-gcc]
 
 # dotfile
 export PATH=~/.dotfiles:$PATH
@@ -56,4 +56,8 @@ export PATH
 # Setting PATH for Python 3.8
 # The original version is saved in .bash_profile.pysave
 PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
+export PATH
+
+# armcc
+PATH="/opt/gcc-arm-none-eabi-4_9-2015q3/bin:${PATH}"
 export PATH
