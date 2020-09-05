@@ -3,11 +3,14 @@
 	email = is.tosinyan@outlook.com
 [core]
     editor = vim
+	quotepath = false
 [alias]
 	br = branch
 	st = status
 	ci = commit
 	co = checkout
+	pl = pull
+	pt = pust
 
 	# %an: 作者名字，是指实际作出修改的人
 	# %cn: 提交者名字，是指最后将此工作成果提交到仓库的人
@@ -31,3 +34,5 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[https]
+	proxy = socks5://127.0.0.1:1086
