@@ -5,6 +5,7 @@
     editor = vim
 	quotepath = false
 [alias]
+	df = diff
 	br = branch
 	st = status
 	ci = commit
@@ -14,7 +15,8 @@
 
 	# %an: 作者名字，是指实际作出修改的人
 	# %cn: 提交者名字，是指最后将此工作成果提交到仓库的人
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	#lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+	lg = log --color --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 
 	# 看时间的log
 	# %ai: 作者修订日期
@@ -35,4 +37,6 @@
 	process = git-lfs filter-process
 	required = true
 [https]
+	proxy = socks5://127.0.0.1:1086
+[http]
 	proxy = socks5://127.0.0.1:1086
