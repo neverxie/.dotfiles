@@ -64,3 +64,6 @@ export PATH
 
 # git
 source ~/.git-completion.bash
+
+# key bind
+bind -r "\C-l"
