@@ -36,10 +36,10 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[https]
-	proxy = socks5://127.0.0.1:1086
-[http]
-	proxy = socks5://127.0.0.1:1086
+#[https]
+#	proxy = socks5://127.0.0.1:1086
+#[http]
+#	proxy = socks5://127.0.0.1:1086
 [diff]
   tool = bcomp
 [difftool]
