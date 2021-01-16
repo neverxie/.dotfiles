@@ -31,7 +31,7 @@ tmux split-window -v -p 10 # 窗口分为上下两部分，并通过-p制定比�
 tmux new-window -t $session:2 -n code
 
 # 这个暂时先不要了
-#tmux new-window -t $session:3 -n minicom
+tmux new-window -t $session:3 -n test
 
 # 选择一个默认窗口
 tmux send-keys -t $session:1 'zsh' C-m
