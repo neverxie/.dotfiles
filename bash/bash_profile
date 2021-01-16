@@ -42,11 +42,15 @@ function git-branch-prompt {
   	    printf " %s" $branch;
   	fi
 }
+
 #PS1='\[\033[38;5;24m\]\w\[\033[00m\] '
-PS1='\[\033[0;34m\]\w\[\033[00m\] '
+PS1='\[\033[0;34m\]\w\[\033[00m\]'
 PS1+="\e[38;5;214m\$(git-branch-prompt)\e[0m"
 PS1+='\n'
 PS1+='\[\033[0;34m\]❯\[\033[00m\] '
+
+# git补全
+source ~/.git-completion.bash
 
 # Setting PATH for Python 3.7
 # The original version is saved in .bash_profile.pysave
@@ -62,8 +66,7 @@ export PATH
 PATH="/opt/gcc-arm-none-eabi-4_9-2015q3/bin:${PATH}"
 export PATH
 
-# git
-source ~/.git-completion.bash
+export ALL_PROXY=socks5://127.0.0.1:1086
 
 # key bind
 bind -r "\C-l"
