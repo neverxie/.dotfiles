@@ -26,7 +26,7 @@ bash/bashrc
 #cmus
 #curl/curlrc
 git/gitconfig
-#git/gitignore
+git/gitignore
 #git/gitattributes
 #git/tigrc
 #git/gitk
@@ -60,7 +60,7 @@ git/gitconfig
 tmux/tmux.conf
 tmux/tmux.conf.local
 #tmux/tmuxinator
-#vim/dotvim:.vim
+vim/dotvim:.vim
 vim/vimrc
 #vim/gvimrc
 #wget/wgetrc
