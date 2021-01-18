@@ -50,9 +50,10 @@ function git-branch-prompt {
 #PS1+='\[\033[0;34m\]❯\[\033[00m\] '
 
 PS1='\e[0m\e[2m\u@\h: \e[0m' # 用户@主机名
-PS1+='\[\033[38;5;12m\]\w\e[s\[\033[00m\]' # 路径
-PS1+="\e[38;5;39m\$(git-branch-prompt)\e[0m" # 分支名
-PS1+='\[\033[38;5;12m\] ❯ \[\033[00m\]' # >
+PS1+='\[\033[0;34m\]\w\e\[\033[00m\]'
+#PS1+='\[\033[38;5;34m\]\w\e[s\[\033[00m\]' # 路径
+PS1+="\e[38;5;36m\$(git-branch-prompt)\e[0m" # 分支名
+PS1+='\[\033[0;34m\] ❯ \[\033[00m\]' # >
 
 # git补全
 source ~/.git-completion.bash
@@ -71,7 +72,7 @@ export PATH
 PATH="/opt/gcc-arm-none-eabi-4_9-2015q3/bin:${PATH}"
 export PATH
 
-export ALL_PROXY=socks5://127.0.0.1:1086
+#export ALL_PROXY=socks5://127.0.0.1:1086
 
 # key bind
 bind -r "\C-l"
