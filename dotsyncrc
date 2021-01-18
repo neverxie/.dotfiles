@@ -59,6 +59,7 @@ git/gitignore
 #task/taskrc
 tmux/tmux.conf
 tmux/tmux.conf.local
+tmux/dottmux:.tmux
 #tmux/tmuxinator
 vim/dotvim:.vim
 vim/vimrc
