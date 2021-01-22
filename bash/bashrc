@@ -136,3 +136,8 @@ function git-branch-prompt {
 # \e[2m...\e[0m...
 #\[\033[38;5;36m\]...\[\033[00m\]
 export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[0;2m\]\u@\h:\[\033[00m\]\[\033[0;34m\]\w \[\033[00m\]\[\033[38;5;36m\]\$(git-branch-prompt)\[\033[00m\]\[\033[0;34m\]\$ \[\033[00m\]"
+
+# key bind
+stty -ixon
+bind -r "\C-s"
+bind -r "\C-l"

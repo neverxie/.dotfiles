@@ -85,4 +85,6 @@ export PATH
 #export ALL_PROXY=socks5://127.0.0.1:1086
 
 # key bind
+stty -ixon
+bind -r "\C-s"
 bind -r "\C-l"
