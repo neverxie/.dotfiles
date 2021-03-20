@@ -14,7 +14,7 @@ fi
 
 # 创建一个新session名称为 $session，新窗口名为bash，并detach
 tmux new-session -d -s $session -n debug
-tmux split-window -h
+tmux split-window -h -p 80
 tmux split-window -v -p 10 # 窗口分为上下两部分，并通过-p制定比例
 #tmux select-pane -t 2
 # 将窗口分为上下两部分
