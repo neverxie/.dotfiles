@@ -128,14 +128,14 @@ function git-branch-name {
 function git-branch-prompt {
 	local branch=`git-branch-name`
   	if [ $branch ]; then
-  	    printf "%s " $branch;
+  	    printf " %s " $branch;
   	fi
 }
 
 # 在以下 > 处填写需要的内容
 # \e[2m...\e[0m...
 #\[\033[38;5;36m\]...\[\033[00m\]
-export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[0;2m\]\u@\h:\[\033[00m\]\[\033[0;34m\]\w \[\033[00m\]\[\033[38;5;36m\]\$(git-branch-prompt)\[\033[00m\]\[\033[0;34m\]\$ \[\033[00m\]"
+export PS1="\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[0;2m\]\u@\h:\[\033[00m\]\[\033[0;34m\]\w\[\033[00m\]\[\033[38;5;36m\]\$(git-branch-prompt)\[\033[00m\]\[\033[0;34m\]\$ \[\033[00m\]"
 
 # key bind
 stty -ixon
