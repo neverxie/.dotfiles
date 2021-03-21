@@ -254,16 +254,16 @@ func SetTitle()
     endif
 
 	if &filetype == 'python'
-        call append(line(".")+6, "")
-        call append(line(".")+7, "# !/usr/bin/python")
-        call append(line(".")+8, "# -*- coding:utf-8 -*-")
-        call append(line(".")+9, "")
+        call append(line(".")+8,  "")
+        call append(line(".")+9,  "# !/usr/bin/python")
+        call append(line(".")+10, "# -*- coding:utf-8 -*-")
+        call append(line(".")+11, "")
 	endif
 
 	if &filetype == 'sh'
-        call append(line(".")+6, "")
-        call append(line(".")+7, "# !/bin/bash")
-        call append(line(".")+8, "")
+        call append(line(".")+8,  "")
+        call append(line(".")+9,  "# !/bin/bash")
+        call append(line(".")+10, "")
 	endif
 
     if &filetype == 'cpp'
