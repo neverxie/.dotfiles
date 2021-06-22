@@ -238,7 +238,7 @@ func SetTitle()
         call append(line(".")+3, "\"")
         call append(line(".")+4, "\" Change Logs:")
         call append(line(".")+5, "\" Date			Author		Notes")
-        call append(line(".")+6, "\" ".strftime("%F")."	lepus	the first version")
+        call append(line(".")+6, "\" ".strftime("%F")."	lepus		the first version")
         call append(line(".")+7, "\"=========================================================================")
 
 	else " tab
@@ -249,7 +249,7 @@ func SetTitle()
         call append(line(".")+3, "#")
         call append(line(".")+4, "# Change Logs:")
         call append(line(".")+5, "# Date			Author		Notes")
-        call append(line(".")+6, "# ".strftime("%F")."	lepus	the first version")
+        call append(line(".")+6, "# ".strftime("%F")."	lepus		the first version")
         call append(line(".")+7, "#=========================================================================")
     endif
 
